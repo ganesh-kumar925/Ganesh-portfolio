@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #0a0a0a; 
+            overflow: hidden; 
+            font-family: 'Courier New', monospace;
+        }
+        .loader-container {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 100%);
+        }
+        .cube {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 3s infinite linear;
+        }
+        .cube div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #00ffff;
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 20px #00ffff;
+        }
+        .cube .front { transform: translateZ(50px); }
+        .cube .back { transform: translateZ(-50px) rotateY(180deg); }
+        .cube .right { transform: rotateY(90deg) translateZ(50px); }
+        .cube .left { transform: rotateY(-90deg) translateZ(50px); }
+        .cube .top { transform: rotateX(90deg) translateZ(50px); }
+        .cube .bottom { transform: rotateX(-90deg) translateZ(50px); }
+        @keyframes rotate {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+        .loading-text {
+            margin-top: 50px;
+            font-size: 24px;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            animation: glitch 1s infinite;
+        }
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 10px #00ffff; }
+            50% { text-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff; }
+        }
+        .progress-bar {
+            width: 300px;
+            height: 4px;
+            background: #1a1a1a;
+            margin-top: 30px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            width: 0%;
+            animation: load 3s forwards;
+            box-shadow: 0 0 10px #00ffff;
+        }
+        @keyframes load {
+            100% { width: 100%; }
+        }
+        .start-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 0.5s 3s forwards;
+            transition: all 0.3s;
+        }
+        .start-btn:hover {
+            background: #00ffff;
+            color: #0a0a0a;
+            box-shadow: 0 0 20px #00ffff;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="cube">
+            <div class="front"></div>
+            <div class="back"></div>
+            <div class="right"></div>
+            <div class="left"></div>
+            <div class="top"></div>
+            <div class="bottom"></div>
+        </div>
+        <div class="loading-text">INITIALIZING...</div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <button class="start-btn" onclick="window.location.href='profile.html'">PRESS START</button>
+    </div>
+</body>
+</html>
